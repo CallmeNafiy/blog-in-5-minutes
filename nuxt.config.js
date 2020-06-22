@@ -42,7 +42,10 @@ const config = {
     /*
     ** Run ESLINT on save
     */
-    extend (config, ctx) {
+
+  // a little change for the upgrade
+  
+   /* extend (config, ctx) {
       if (ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -50,6 +53,18 @@ const config = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         })
+      }
+    },
+    */
+
+    extend (config, { isDev }) {
+      if (isDev && process.client) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/
+      })
       }
     },
 

@@ -17,7 +17,7 @@
         <h2>All articles ({{ posts.length }})</h2>
       </div>
       <ul class="items-list wrapper">
-        <li class="item" v-for="post in posts">
+        <li class="item" v-for="post in posts" v-bind:key="post">
           <article-preview :post="post"></article-preview>
         </li>
       </ul>
